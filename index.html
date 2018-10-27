@@ -8,14 +8,14 @@
     <!-- K Favicon Link -->
     <link id="favicon" rel="icon" href="assets/images/favicon.ico" type="image/icon" sizes="8x8">
     <!-- Bootstrap for styling -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- My CSS Style sheet. -->
     <link rel="stylesheet" href="assets/css/style.css">
 
     <title>Psychis Letter Game</title>
 
 </head>
+<!-- boostrap styling with IDs for javascript functions. all saparate rows.-->
 <body>
     <div class="container">
         <div class="row">
@@ -28,36 +28,35 @@
                 <h4>Guess which letter I'm "thinking" of.</h4>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
-                <p class="winsHTML"></p>
+                <p class="winsHTML">1</p>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <p class="lossesHTML"></p>
+                <p class="lossesHTML">2</p>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <p class="guessesHTML"></p>
+                <p class="guessesLeftHTML">3</p>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <p class="guessesHTML"></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p class="yourGuessesSoFar"></p>
+                <p class="guessedLettersHTML">4</p>
             </div>
         </div>
         
 
         
     </div>
-    
 
+    <!-- Popper positioning, Boostrap, and my own game JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="assets/javascript/game.js"></script>
 </body>
 </html>
