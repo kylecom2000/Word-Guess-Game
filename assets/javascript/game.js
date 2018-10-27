@@ -1,8 +1,8 @@
 // computer guesses a letter
 
-// listen for keyboard "clicks"
+// listen for keyboard "clicks" and the value of that click.
 
-// check number with computer guess
+// check letter with computer guess
 
 // if it is correct, add to wins, reset game
 
@@ -15,12 +15,11 @@
 
 // Array of letters and variables.
 var computerLetters = ["a", "b", "c", "d", "e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var userGuess = "";
+var userGuess;
 var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
 
-console.log(computerLetters[2]);
 // Generate computer choice.
 var computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
 console.log(computerChoice);
@@ -29,15 +28,23 @@ console.log(computerChoice);
 document.onkeyup = function(event) {
 
     var key = event.key;
+    userGuess = key;
+    console.log("userGuess: " + userGuess);
     if(key === computerChoice){
+        // if the user guesses what the computer choice was, it gets a win and game starts over
         console.log("Matched computer guess");
         wins++;
-        console.log(wins);
+        console.log("Wins: " + wins);
         // restart guessesLeft
         // restart userGuesses
     } else {
+        // if user doesn't guess correctly, guesses left goes down by one...
+        
         console.log("Did not match computer guess");
         guessesLeft = guessesLeft - 1;
-        console.log(guessesLeft);
+        console.log("Guesses left: " + guessesLeft);
+        // ...add a letter to letters guessed on the html.
+        document.querySelector("#guessedLettersHTML").textContent = userGuess;
+        // If guess left equals 0, then make losses go up by one, re-run computer choice.
     }
 }
