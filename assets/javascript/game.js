@@ -20,6 +20,15 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
 
+// Variables that hold references to the places in the HTML where I will display things.
+var winsText = document.getElementById("winsHTML");
+var lossesText = document.getElementById("lossesHTML");
+var guessesLeftText = document.getElementById("guessesLeftHTML");
+var userLettersText = document.getElementById("guessedLettersHTML")
+
+//NEED a variable that adds adds the user guesses to the end of a string and that's what it updates to HTML.
+var usedLetters;
+
 // Generate computer choice.
 var computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
 console.log(computerChoice);
@@ -39,12 +48,25 @@ document.onkeyup = function(event) {
         // restart userGuesses
     } else {
         // if user doesn't guess correctly, guesses left goes down by one...
-        
+        // ADD A LETTER TO used letters.
         console.log("Did not match computer guess");
         guessesLeft = guessesLeft - 1;
         console.log("Guesses left: " + guessesLeft);
         // ...add a letter to letters guessed on the html.
-        document.querySelector("#guessedLettersHTML").textContent = userGuess;
+        
         // If guess left equals 0, then make losses go up by one, re-run computer choice.
+    }
+    
+    usedLetters = userGuess;
+
+    winsText.textContent = "Wins: " + wins;
+    lossesText.textContent = "Losses: " + losses;
+    guessesLeftText.textContent = "Guesses remaining: " + guessesLeft;
+    userLettersText.textContent = "Letters guessed: " + usedLetters;
+    
+    if (guessesLeft === 0){
+        losses++;
+        alert("YOU LOSE!")
+        return;
     }
 }
