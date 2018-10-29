@@ -21,10 +21,10 @@ var losses = 0;
 var guessesLeft = 9;
 
 // Variables that hold references to the places in the HTML where I will display things.
-var winsText = document.getElementById("winsHTML");
-var lossesText = document.getElementById("lossesHTML");
-var guessesLeftText = document.getElementById("guessesLeftHTML");
-var userLettersText = document.getElementById("guessedLettersHTML")
+// var winsText = document.getElementById("winsHTML");
+// var lossesText = document.getElementById("lossesHTML");
+// var guessesLeftText = document.getElementById("guessesLeftHTML");
+// var userLettersText = document.getElementById("guessedLettersHTML")
 
 //NEED a variable that adds adds the user guesses to the end of a string and that's what it updates to HTML.
 var usedLetters = [];
@@ -39,32 +39,42 @@ document.onkeyup = function(event) {
     var userGuess = event.key;
     
     console.log("userGuess: " + userGuess);
-    if(userGuess === computerChoice){
+    if (guessesLeft <= 0) {
+        losses++;
+        document.getElementById("lossesHTML").innerHTML = "Losses: " + losses;
+        alert("You lost!");
+        usedLetters = [];
+        guessesLeft = 9;
+        document.getElementById("guessedLettersHTML").innerHTML = "Used letters: " + usedLetters;
+        document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + guessesLeft;
+        computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
+        console.log(computerChoice);
+
+    } else if (userGuess === computerChoice){
         // if the user guesses what the computer choice was, it gets a win and game starts over
         console.log("You won!");
         alert("You won!")
         // log wins plus one to html.
-        document.getElementById("winsHTML").innerHTML = "Wins: " + wins++;
+        document.getElementById("winsHTML").innerHTML = "Wins: " + ++wins;
         // reset usedLetters variable
         usedLetters = [];
         // reset html pushes for the letters
         document.getElementById("guessedLettersHTML").innerHTML = "Used letters: " + usedLetters;
+        // reset how many guesses are left and log to HTML.
+        guessesLeft = 9;
+        document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + guessesLeft;
+
         computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
         console.log(computerChoice);
-        // reset how many guesses are left and log to HTML.
-        guessesLeft = 10;
-        document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + guessesLeft;
         
     } else {
         // if user doesn't guess correctly, guesses left goes down by one...
-        // ADD A LETTER TO used letters.
-        console.log("Did not match computer guess");
-        document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + guessesLeft--;
+        // console.log("Did not match computer guess");
+        document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + --guessesLeft;
+        // ...add a letter to usedLetters variable
         usedLetters.push(userGuess);
+        // update the html to reflect the letters in userGuess variable
         document.getElementById("guessedLettersHTML").innerHTML = "Used Letters: " + usedLetters;
-        // ...add a letter to letters guessed on the html.
-        
-        // If guess left equals 0, then make losses go up by one, re-run computer choice.
     }
     
     // usedLetters = userGuess;
@@ -75,12 +85,12 @@ document.onkeyup = function(event) {
     // guessesLeftText.textContent = "Guesses remaining: " + guessesLeft;
     // userLettersText.innerHTML = "Letters guessed: " + usedLetters;
     
-    if (guessesLeft === 0){
-        losses++;
-        alert("YOU LOSE!")
-        guessesLeft = 9;
-        // clear usedLetters.
-        // new computer choice.
-        return;
-    }
+    // if (guessesLeft === 0){
+    //     losses++;
+    //     alert("YOU LOSE!")
+    //     guessesLeft = 9;
+    //     // clear usedLetters.
+    //     // new computer choice.
+    //     return;
+    // }
 }
