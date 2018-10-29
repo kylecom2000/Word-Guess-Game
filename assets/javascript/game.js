@@ -20,11 +20,6 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
 
-// Variables that hold references to the places in the HTML where I will display things.
-// var winsText = document.getElementById("winsHTML");
-// var lossesText = document.getElementById("lossesHTML");
-// var guessesLeftText = document.getElementById("guessesLeftHTML");
-// var userLettersText = document.getElementById("guessedLettersHTML")
 
 //NEED a variable that adds adds the user guesses to the end of a string and that's what it updates to HTML.
 var usedLetters = [];
@@ -39,7 +34,7 @@ document.onkeyup = function(event) {
     var userGuess = event.key;
     
     console.log("userGuess: " + userGuess);
-    if (guessesLeft <= 0) {
+    if (guessesLeft === 0) {
         //add one to losses
         losses++;
         // Send losses count to HTML
