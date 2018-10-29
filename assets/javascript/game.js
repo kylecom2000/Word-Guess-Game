@@ -27,7 +27,7 @@ var guessesLeftText = document.getElementById("guessesLeftHTML");
 var userLettersText = document.getElementById("guessedLettersHTML")
 
 //NEED a variable that adds adds the user guesses to the end of a string and that's what it updates to HTML.
-var usedLetters;
+var usedLetters = [];
 
 // Generate computer choice.
 var computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
@@ -35,38 +35,52 @@ console.log(computerChoice);
 
 
 document.onkeyup = function(event) {
-
-    var key = event.key;
-    userGuess = key;
+    
+    var userGuess = event.key;
+    
     console.log("userGuess: " + userGuess);
-    if(key === computerChoice){
+    if(userGuess === computerChoice){
         // if the user guesses what the computer choice was, it gets a win and game starts over
-        console.log("Matched computer guess");
-        wins++;
-        console.log("Wins: " + wins);
-        // restart guessesLeft
-        // restart userGuesses
+        console.log("You won!");
+        alert("You won!")
+        // log wins plus one to html.
+        document.getElementById("winsHTML").innerHTML = "Wins: " + wins++;
+        // reset usedLetters variable
+        usedLetters = [];
+        // reset html pushes for the letters
+        document.getElementById("guessedLettersHTML").innerHTML = "Used letters: " + usedLetters;
+        computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
+        console.log(computerChoice);
+        // reset how many guesses are left and log to HTML.
+        guessesLeft = 10;
+        document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + guessesLeft;
+        
     } else {
         // if user doesn't guess correctly, guesses left goes down by one...
         // ADD A LETTER TO used letters.
         console.log("Did not match computer guess");
-        guessesLeft = guessesLeft - 1;
-        console.log("Guesses left: " + guessesLeft);
+        document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + guessesLeft--;
+        usedLetters.push(userGuess);
+        document.getElementById("guessedLettersHTML").innerHTML = "Used Letters: " + usedLetters;
         // ...add a letter to letters guessed on the html.
         
         // If guess left equals 0, then make losses go up by one, re-run computer choice.
     }
     
-    usedLetters = userGuess;
+    // usedLetters = userGuess;
 
-    winsText.textContent = "Wins: " + wins;
-    lossesText.textContent = "Losses: " + losses;
-    guessesLeftText.textContent = "Guesses remaining: " + guessesLeft;
-    userLettersText.textContent = "Letters guessed: " + usedLetters;
+    //displays text on the html.
+    // winsText.textContent = "Wins: " + wins;
+    // lossesText.textContent = "Losses: " + losses;
+    // guessesLeftText.textContent = "Guesses remaining: " + guessesLeft;
+    // userLettersText.innerHTML = "Letters guessed: " + usedLetters;
     
     if (guessesLeft === 0){
         losses++;
         alert("YOU LOSE!")
+        guessesLeft = 9;
+        // clear usedLetters.
+        // new computer choice.
         return;
     }
 }
