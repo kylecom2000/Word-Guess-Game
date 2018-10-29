@@ -40,14 +40,22 @@ document.onkeyup = function(event) {
     
     console.log("userGuess: " + userGuess);
     if (guessesLeft <= 0) {
+        //add one to losses
         losses++;
+        // Send losses count to HTML
         document.getElementById("lossesHTML").innerHTML = "Losses: " + losses;
+        // alert user how much better computers are than humans.
         alert("You lost!");
+        // reset used letters
         usedLetters = [];
+        // reset guessed letters
         guessesLeft = 9;
-        document.getElementById("guessedLettersHTML").innerHTML = "Used letters: " + usedLetters;
-        document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + guessesLeft;
+        // update both resets to the html.
+        document.getElementById("guessedLettersHTML").innerHTML = "Used Letters: " + usedLetters;
+        document.getElementById("guessesLeftHTML").innerHTML = "Guesses Left: " + guessesLeft;
+        // reset computer choice.
         computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
+        // console log to check code
         console.log(computerChoice);
 
     } else if (userGuess === computerChoice){
@@ -59,38 +67,22 @@ document.onkeyup = function(event) {
         // reset usedLetters variable
         usedLetters = [];
         // reset html pushes for the letters
-        document.getElementById("guessedLettersHTML").innerHTML = "Used letters: " + usedLetters;
+        document.getElementById("guessedLettersHTML").innerHTML = "Used Letters: " + usedLetters;
         // reset how many guesses are left and log to HTML.
         guessesLeft = 9;
         document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + guessesLeft;
-
+        // reset computer choice.
         computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
+        // console log it to check code is working.
         console.log(computerChoice);
         
     } else {
         // if user doesn't guess correctly, guesses left goes down by one...
         // console.log("Did not match computer guess");
-        document.getElementById("guessesLeftHTML").innerHTML = "Guesses left: " + --guessesLeft;
+        document.getElementById("guessesLeftHTML").innerHTML = "Guesses Left: " + --guessesLeft;
         // ...add a letter to usedLetters variable
         usedLetters.push(userGuess);
         // update the html to reflect the letters in userGuess variable
         document.getElementById("guessedLettersHTML").innerHTML = "Used Letters: " + usedLetters;
     }
-    
-    // usedLetters = userGuess;
-
-    //displays text on the html.
-    // winsText.textContent = "Wins: " + wins;
-    // lossesText.textContent = "Losses: " + losses;
-    // guessesLeftText.textContent = "Guesses remaining: " + guessesLeft;
-    // userLettersText.innerHTML = "Letters guessed: " + usedLetters;
-    
-    // if (guessesLeft === 0){
-    //     losses++;
-    //     alert("YOU LOSE!")
-    //     guessesLeft = 9;
-    //     // clear usedLetters.
-    //     // new computer choice.
-    //     return;
-    // }
 }
