@@ -34,26 +34,7 @@ document.onkeyup = function(event) {
     var userGuess = event.key;
     
     console.log("userGuess: " + userGuess);
-    if (guessesLeft === 0) {
-        //add one to losses
-        losses++;
-        // Send losses count to HTML
-        document.getElementById("lossesHTML").innerHTML = "Losses: " + losses;
-        // alert user how much better computers are than humans.
-        alert("You lost!");
-        // reset used letters
-        usedLetters = [];
-        // reset guessed letters
-        guessesLeft = 9;
-        // update both resets to the html.
-        document.getElementById("guessedLettersHTML").innerHTML = "Used Letters: " + usedLetters;
-        document.getElementById("guessesLeftHTML").innerHTML = "Guesses Left: " + guessesLeft;
-        // reset computer choice.
-        computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
-        // console log to check code
-        console.log(computerChoice);
-
-    } else if (userGuess === computerChoice){
+    if (userGuess === computerChoice){
         // if the user guesses what the computer choice was, it gets a win and game starts over
         console.log("You won!");
         alert("You won!")
@@ -79,5 +60,24 @@ document.onkeyup = function(event) {
         usedLetters.push(userGuess);
         // update the html to reflect the letters in userGuess variable
         document.getElementById("guessedLettersHTML").innerHTML = "Used Letters: " + usedLetters;
+    }
+    if (guessesLeft === 0) {
+        //add one to losses
+        losses++;
+        // Send losses count to HTML
+        document.getElementById("lossesHTML").innerHTML = "Losses: " + losses;
+        // alert user how much better computers are than humans.
+        alert("You lost!");
+        // reset used letters
+        usedLetters = [];
+        // reset guessed letters
+        guessesLeft = 9;
+        // update both resets to the html.
+        document.getElementById("guessedLettersHTML").innerHTML = "Used Letters: " + usedLetters;
+        document.getElementById("guessesLeftHTML").innerHTML = "Guesses Left: " + guessesLeft;
+        // reset computer choice.
+        computerChoice = computerLetters[Math.floor(Math.random() * computerLetters.length)];
+        // console log to check code
+        console.log(computerChoice);
     }
 }
